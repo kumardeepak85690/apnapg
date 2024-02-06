@@ -26,4 +26,4 @@ dist-ssr
 
 # Secret
 .env
-client/.env
+.client/.env
