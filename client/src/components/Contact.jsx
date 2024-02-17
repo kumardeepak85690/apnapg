@@ -29,6 +29,7 @@ export default function Contact({ listing }) {
             for{' '}
             <span className='font-semibold'>{listing.name}</span>
           </p>
+          <p className='text-gray-600'>Mobile Number : {listing.mobileNumber}</p>
           <textarea
             name='message'
             id='message'

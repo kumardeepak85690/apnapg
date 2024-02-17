@@ -54,6 +54,10 @@ const listingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    mobileNumber: { // New field for mobile number
+      type: String, // Assuming mobile number is stored as a string
+      required: true,
+    },
   },
   { timestamps: true }
 );

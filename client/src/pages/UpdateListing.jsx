@@ -27,6 +27,7 @@ export default function CreateListing() {
     offer: false,
     parking: false,
     furnished: false,
+    mobileNumber: '', // Added mobile number field
   });
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -135,6 +136,13 @@ export default function CreateListing() {
       setFormData({
         ...formData,
         [e.target.id]: e.target.value,
+      });
+    }
+
+    if (e.target.id === 'mobileNumber') { // Handle mobile number field change
+      setFormData({
+        ...formData,
+        mobileNumber: e.target.value,
       });
     }
   };
@@ -323,6 +331,15 @@ export default function CreateListing() {
               </div>
             )}
           </div>
+          <input
+            type='text'
+            placeholder='Mobile Number' // Added mobile number input field
+            className='border p-3 rounded-lg'
+            id='mobileNumber'
+            required
+            onChange={handleChange}
+            value={formData.mobileNumber}
+          />
         </div>
         <div className='flex flex-col flex-1 gap-4'>
           <p className='font-semibold'>
