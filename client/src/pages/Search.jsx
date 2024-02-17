@@ -6,6 +6,7 @@ export default function Search() {
   const navigate = useNavigate();
   const [sidebardata, setSidebardata] = useState({
     searchTerm: "",
+    // address: "",
     type: "all",
     parking: false,
     furnished: false,
@@ -21,6 +22,7 @@ export default function Search() {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get("searchTerm");
+    // const searchAddressFromUrl = urlParams.get("address");
     const typeFromUrl = urlParams.get("type");
     const parkingFromUrl = urlParams.get("parking");
     const furnishedFromUrl = urlParams.get("furnished");
@@ -30,6 +32,7 @@ export default function Search() {
 
     if (
       searchTermFromUrl ||
+      // searchAddressFromUrl ||
       typeFromUrl ||
       parkingFromUrl ||
       furnishedFromUrl ||
@@ -39,6 +42,7 @@ export default function Search() {
     ) {
       setSidebardata({
         searchTerm: searchTermFromUrl || "",
+        // address: searchAddressFromUrl || "",
         type: typeFromUrl || "all",
         parking: parkingFromUrl === "true" ? true : false,
         furnished: furnishedFromUrl === "true" ? true : false,
@@ -79,6 +83,11 @@ export default function Search() {
       setSidebardata({ ...sidebardata, searchTerm: e.target.value });
     }
 
+    if (e.target.id === "address") {
+      setSidebardata({ ...sidebardata, address: e.target.value });
+    }
+    
+
     if (
       e.target.id === "parking" ||
       e.target.id === "furnished" ||
@@ -110,9 +119,11 @@ export default function Search() {
     urlParams.set("offer", sidebardata.offer);
     urlParams.set("sort", sidebardata.sort);
     urlParams.set("order", sidebardata.order);
+    // urlParams.set("address", sidebardata.address); // Add address parameter
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
+  
 
   const onShowMoreClick = async () => {
     const numberOfListings = listings.length;
@@ -144,6 +155,18 @@ export default function Search() {
               onChange={handleChange}
             />
           </div>
+          {/* <div className="flex items-center gap-2">
+            <label className="whitespace-nowrap font-semibold">Address:</label>
+            <input
+              type="text"
+              id="address"
+              placeholder="Enter address..."
+              className="border rounded-lg p-3 w-full"
+              value={sidebardata.address}
+              onChange={handleChange}
+            />
+          </div> */}
+
           <div className="flex gap-2 flex-wrap items-center">
             <label className="font-semibold">Type:</label>
             <div className="flex gap-2">
